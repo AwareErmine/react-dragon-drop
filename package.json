@@ -1,0 +1,24 @@
+{
+  "name": "react-dragon-drop",
+  "version": "1.0.0",
+  "description": "React drag and drop library with a dragon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AwareErmine/react-dragon-drop.git"
+  },
+  "author": "Aramie Ewen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AwareErmine/react-dragon-drop/issues"
+  },
+  "homepage": "https://github.com/AwareErmine/react-dragon-drop#readme",
+  "devDependencies": {
+    "@types/react": "^18.2.25",
+    "react": "^18.2.0",
+    "typescript": "^5.2.2"
+  }
+}
