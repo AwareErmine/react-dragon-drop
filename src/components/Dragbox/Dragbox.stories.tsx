@@ -14,15 +14,30 @@ type Story = StoryObj<typeof Dragbox>;
 
 export const Primary: Story = (args) => (
     <>
-        <Draggable>
-            <div style={{color: "grey"}}>Test</div>
-        </Draggable>
+        <Dragbox>
+            <ul style={{backgroundColor: "lightcoral", minHeight: "5rem", minWidth: "5rem"}}>
+                <Draggable>
+                    <li>Box 1 thing 1</li>
+                </Draggable>
+
+                <Draggable>
+                    <li>Box 1 thing 2</li>
+                </Draggable>
+            </ul>   
+        </Dragbox>
 
         <Dragbox>
-            <div style={{backgroundColor: "black", width: "5rem", height: "5rem"}}/>
+            <ul style={{backgroundColor: "lightcyan", minHeight: "5rem", minWidth: "5rem"}}>
+                <Draggable>
+                    <li>Box 2 thing 1</li>
+                </Draggable>
+
+                <Draggable>
+                    <li>Box 2 thing 2</li>
+                </Draggable>
+            </ul>
         </Dragbox>
-    </>
-    
+    </> 
 );
 Primary.args = {
     children: <div>test</div>,

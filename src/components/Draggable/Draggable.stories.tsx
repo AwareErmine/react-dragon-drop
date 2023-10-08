@@ -12,19 +12,15 @@ export default meta;
 type Story = StoryObj<typeof Draggable>;
 
 export const Primary: Story = (args) => (
-    <div>
+    <ul>
         <Draggable>
-            <div>Test0</div>
+            <li>Thing 1</li>
         </Draggable>
 
         <Draggable>
-            <div>Test1</div>
+            <li>Thing 2</li>
         </Draggable>
- 
-        <Draggable>
-            <div>Test2</div>
-        </Draggable>
-    </div>
+    </ul>
 );
 Primary.args = {
     children: <div>test</div>,
