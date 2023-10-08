@@ -16,11 +16,11 @@ export const Primary: Story = (args) => (
         <Draggable>
             <div>Test0</div>
         </Draggable>
-        {
-        // <Draggable>
-        //     <div>Test1</div>
-        // </Draggable>
-        }   
+
+        <Draggable>
+            <div>Test1</div>
+        </Draggable>
+ 
         <Draggable>
             <div>Test2</div>
         </Draggable>

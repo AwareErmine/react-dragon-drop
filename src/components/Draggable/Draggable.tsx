@@ -2,7 +2,6 @@ import React from "react";
 
 const onDrag = (event: React.DragEvent) => {
     event.dataTransfer.setData("dragged-id", (event.target as HTMLElement).id);
-    // event.dataTransfer.dropEffect = "move";
 };
 
 const onDrop = (event: React.DragEvent) => {
