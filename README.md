@@ -20,29 +20,31 @@ Note: don't use Dragbox if you just have one list you need sorted. It's ok. Drag
 
 ## Drag between two lists
 ```jsx
-<Dragbox>
-    <ul style={{backgroundColor: "lightcoral", minHeight: "5rem", minWidth: "5rem"}}>
-        <Draggable>
-            <li>Box 1 thing 1</li>
-        </Draggable>
+<>
+    <Dragbox>
+        <ul style={{backgroundColor: "lightcoral", minHeight: "5rem", minWidth: "5rem"}}>
+            <Draggable>
+                <li>Box 1 thing 1</li>
+            </Draggable>
 
-        <Draggable>
-            <li>Box 1 thing 2</li>
-        </Draggable>
-    </ul>   
-</Dragbox>
+            <Draggable>
+                <li>Box 1 thing 2</li>
+            </Draggable>
+        </ul>   
+    </Dragbox>
 
-<Dragbox>
-    <ul style={{backgroundColor: "lightcyan", minHeight: "5rem", minWidth: "5rem"}}>
-        <Draggable>
-            <li>Box 2 thing 1</li>
-        </Draggable>
+    <Dragbox>
+        <ul style={{backgroundColor: "lightcyan", minHeight: "5rem", minWidth: "5rem"}}>
+            <Draggable>
+                <li>Box 2 thing 1</li>
+            </Draggable>
 
-        <Draggable>
-            <li>Box 2 thing 2</li>
-        </Draggable>
-    </ul>
-</Dragbox>
+            <Draggable>
+                <li>Box 2 thing 2</li>
+            </Draggable>
+        </ul>
+    </Dragbox>
+</>
 ```
 
 

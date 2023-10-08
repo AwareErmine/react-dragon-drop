@@ -2,6 +2,7 @@ import React from "react";
 
 const onDrag = (event: React.DragEvent) => {
     event.dataTransfer.setData("dragged-id", (event.target as HTMLElement).id);
+    event.dataTransfer.setData("dragged-parent-id", (event.target as HTMLElement).parentElement?.parentElement?.id || "noparent");
 };
 
 const onDropDefault = (event: React.DragEvent) => {
