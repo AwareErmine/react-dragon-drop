@@ -10,7 +10,7 @@ export const Dragbox: React.FC<React.PropsWithChildren> = ({children}) => {
                 const target = event.currentTarget as HTMLElement;
                 if (dragged) {
                     target.firstChild?.appendChild(dragged);
-                }
+                } 
             }}
             id={Math.random().toString()}
         >

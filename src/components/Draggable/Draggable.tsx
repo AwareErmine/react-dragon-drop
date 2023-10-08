@@ -4,7 +4,7 @@ const onDrag = (event: React.DragEvent) => {
     event.dataTransfer.setData("dragged-id", (event.target as HTMLElement).id);
 };
 
-const onDrop = (event: React.DragEvent) => {
+const onDropDefault = (event: React.DragEvent) => {
     event.preventDefault();
     const dragged = document.getElementById(event.dataTransfer.getData("dragged-id"));
     const target = event.currentTarget as HTMLElement;
@@ -15,18 +15,27 @@ const onDrop = (event: React.DragEvent) => {
     }
 }
 
-const onDragOver = (event : React.DragEvent) => {
+const onDragOver = (event: React.DragEvent) => {
     event.preventDefault();
 }
 
-export const Draggable: React.FC<React.PropsWithChildren> = ({children}) => {
+interface DraggableProps {
+    children?: React.ReactNode,
+    dragon?: boolean,
+    onDrop?: (event: React.DragEvent) => null
+}
+
+export const Draggable: React.FC<DraggableProps> = ({children, dragon, onDrop}) => {
     return (
         <div 
             draggable={true} 
             onDragStart={onDrag}
             onDragEnd={onDrop}
             onDragOver={onDragOver}
-            onDrop={onDrop}
+            onDrop={(event) => {
+                onDropDefault(event);
+                if (onDrop) onDrop(event);
+            }}
             id={Math.random().toString()}
         >
             {children}
