@@ -18,7 +18,9 @@ export const Primary: Story = (args) => (
             <div style={{color: "grey"}}>Test</div>
         </Draggable>
 
-        <Dragbox />
+        <Dragbox>
+            <div style={{backgroundColor: "black", width: "5rem", height: "5rem"}}/>
+        </Dragbox>
     </>
     
 );
