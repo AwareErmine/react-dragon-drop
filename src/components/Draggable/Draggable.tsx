@@ -17,6 +17,9 @@ const onDropDefault = (event: React.DragEvent) => {
     const targetIdx = Array.prototype.indexOf.call(target?.parentNode?.children, target);
     const targetLength = target?.parentNode?.children.length;
 
+    // console.log(target)
+    // console.log(dragged)
+
     // The parent element of a dragged element's parent is the body of the document for a single list  
     // of draggable items and the DragBox for elements in a DragBox
     // The parent element of a dragged element will always be a container of Draggable elements
@@ -37,6 +40,44 @@ const onDropDefault = (event: React.DragEvent) => {
     } 
 };
 
+const Dragon: React.FC<{
+    mousePosition: {x: number, y: number},
+    draggableId: string
+}> = ({ mousePosition, draggableId }) => {
+    useEffect(() => {
+        const moveDragon = () => {
+            const dragonGif = document.getElementById("dragon" + draggableId)
+
+            const dragonPosition = {
+                x: dragonGif?.offsetLeft,
+                y: dragonGif?.offsetTop
+            }
+
+            if (dragonGif?.style && mousePosition.x && mousePosition.y) {
+                dragonGif.style.top = mousePosition.y + "px";
+                dragonGif.style.left = mousePosition.x + "px";
+            }
+        }
+        const intervalId = setInterval(moveDragon, 50);
+        return () => clearInterval(intervalId)
+    }, [mousePosition, draggableId])
+
+    return (
+        <img 
+            src={require("./dragon.gif")} 
+            id={"dragon" + draggableId}
+            alt="dragon" 
+            style={{
+                width: "3rem", 
+                height: "3rem",
+                position: "absolute",
+                zIndex: "100",
+                transition: "top 400ms ease 0s, left 400ms ease 0s",
+            }} 
+        />
+    )
+}
+
 export const Draggable: React.FC<DraggableProps> = ({children, dragon, onDrop}) => {
     const draggableId = useId();
     const [flying, setFlying] = useState(false);
@@ -56,7 +97,6 @@ export const Draggable: React.FC<DraggableProps> = ({children, dragon, onDrop}) 
                 onDragOver={(event) => {
                     event.preventDefault();
 
-                    // stagger this
                     if (dragon) {
                         setMousePosition({
                             x: event.clientX,
@@ -74,18 +114,7 @@ export const Draggable: React.FC<DraggableProps> = ({children, dragon, onDrop}) 
                 
             </div>
             {dragon && flying &&
-                <img 
-                    src={require("./dragon.gif")} 
-                    id={"dragon" + draggableId}
-                    alt="dragon" 
-                    style={{
-                        width: "3rem", 
-                        height: "3rem",
-                        position: "absolute",
-                        top: mousePosition.y+"px" || "0",
-                        left: mousePosition.x+"px" || "0",
-                    }} 
-                />
+                <Dragon draggableId={draggableId} mousePosition={mousePosition} />
             }
         </>
     )

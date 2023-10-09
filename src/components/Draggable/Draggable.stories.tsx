@@ -87,7 +87,7 @@ Grid.args = {
 };
 
 export const Dragon: Story = (args) => (
-    <ul>
+    <ul style={{backgroundColor: "lavender"}}>
         <Draggable dragon={true}>
             <li>Thing 1</li>
         </Draggable>
