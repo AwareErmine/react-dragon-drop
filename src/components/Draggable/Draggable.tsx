@@ -17,6 +17,11 @@ const onDropDefault = (event: React.DragEvent) => {
     const targetIdx = Array.prototype.indexOf.call(target?.parentNode?.children, target);
     const targetLength = target?.parentNode?.children.length;
 
+    // The parent element of a dragged element's parent is the body of the document for a single list  
+    // of draggable items and the DragBox for elements in a DragBox
+    // The parent element of a dragged element will always be a container of Draggable elements
+    // If there are two lists of Draggable elements not in a DragBox, you can, therefore drag between
+    // them, but if one of the lists becomes empty, you can't go back! 
     if (draggedParentId == target.parentElement?.parentElement?.id) {
         // I want to make the index of the dragged item the index of the target
         if (dragged && targetIdx + 1 != targetLength) {
@@ -27,6 +32,7 @@ const onDropDefault = (event: React.DragEvent) => {
     } else if (dragged) {
         // This works well enough for dragging between two lists
         // And for lists with min heights that are bigger than the elements 
+        // where the items are in a Dragbox
         target.parentNode?.insertBefore(dragged, target?.parentNode?.childNodes[targetIdx]);
     }
 }

@@ -4,18 +4,19 @@
 # Example usage:
 
 ## Draggable list of items
-```jsx
-<Dragbox>
-    <ul>
-        <Draggable>
-            <li>Thing 1</li>
-        </Draggable>
+Note: because draggable items can insert themselves before or after each other, 
+**you do not need Dragbox for just one list**
 
-        <Draggable>
-            <li>Thing 2</li>
-        </Draggable>
-    </ul>
-</Dragbox>
+```jsx
+<ul>
+    <Draggable>
+        <li>Thing 1</li>
+    </Draggable>
+
+    <Draggable>
+        <li>Thing 2</li>
+    </Draggable>
+</ul>
 ```
 
 ## Drag between two lists
@@ -54,6 +55,8 @@
 - Ability to drag onto anywhere on the screen
 - Keep track of history and use ctrl-Z to undo the effects of a drag
 - Drag over customizable effects
+- Dragging is weird with grid 
+- If someone knows how to use Storybook properly, please
 
 ## Dragbox
 - There's probably something to add I just can't think of it 
