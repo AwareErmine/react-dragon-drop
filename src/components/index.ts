@@ -1,2 +1,2 @@
-export * from "./Draggable"
-export * from "./Dragbox"
+export { Draggable } from "./Draggable"
+export { Dragbox } from "./Dragbox"

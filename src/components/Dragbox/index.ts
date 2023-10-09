@@ -1,1 +1,1 @@
-export * from './Dragbox'
+export { Dragbox } from './Dragbox'
