@@ -28,7 +28,7 @@ export default [
           ".js", ".ts", ".jsx", ".tsx"
         ]
       }),
-      typescript(),
+      typescript({ tsconfig: "./tsconfig.json" }),
       commonjs(),
     ],
     external: ["react", "react-dom", "typescript"],
