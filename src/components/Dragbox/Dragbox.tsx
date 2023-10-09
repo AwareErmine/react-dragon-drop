@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useId } from "react";
 
 export const Dragbox: React.FC<React.PropsWithChildren> = ({children}) => {
+    const id = useId()
+
     return (
         <div 
             onDragOver={(event) => event.preventDefault()}
@@ -16,7 +18,7 @@ export const Dragbox: React.FC<React.PropsWithChildren> = ({children}) => {
                     currentTarget.firstChild?.appendChild(dragged);
                 } 
             }}
-            id={Math.random().toString()}
+            id={"dragbox"+id}
         >
             {children}
         </div>

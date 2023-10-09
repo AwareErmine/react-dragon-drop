@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import {DraggableProps} from "./Draggable.types";
 
 const onDrag = (event: React.DragEvent) => {
     // event.target == event.currentTarget should be true here
+    console.log(event.target)
+
     event.dataTransfer.setData("dragged-id", (event.target as HTMLElement).id);
     event.dataTransfer.setData("dragged-parent-id", (event.target as HTMLElement).parentElement?.parentElement?.id || "noparent");
 };
@@ -16,6 +18,9 @@ const onDropDefault = (event: React.DragEvent) => {
     const target = event.currentTarget as HTMLElement;
     const targetIdx = Array.prototype.indexOf.call(target?.parentNode?.children, target);
     const targetLength = target?.parentNode?.children.length;
+
+    console.log(target)
+    console.log(dragged)
 
     // The parent element of a dragged element's parent is the body of the document for a single list  
     // of draggable items and the DragBox for elements in a DragBox
@@ -34,70 +39,75 @@ const onDropDefault = (event: React.DragEvent) => {
         // And for lists with min heights that are bigger than the elements 
         // where the items are in a Dragbox
         target.parentNode?.insertBefore(dragged, target?.parentNode?.childNodes[targetIdx]);
-    }
+    } 
 }
 
-const onDragOver = (event: React.DragEvent) => {
-    event.preventDefault();
-}
-
-// const useMousePosition = () => {
-//     const [mousePosition, setMousePosition] = useState({ x: null, y: null });
+const useMousePosition = () => {
+    const [mousePosition, setMousePosition] = useState({ x: null, y: null });
   
-//     useEffect(() => {
-//       const uWpdateMousePosition = ev => {
-//         setMousePosition({ x: ev.clientX, y: ev.clientY });
-//       };
+    useEffect(() => {
+      const updateMousePosition = (ev: { clientX: any; clientY: any; }) => {
+        setMousePosition({ x: ev.clientX, y: ev.clientY });
+      };
       
-//       window.addEventListener('mousemove', updateMousePosition);
+      window.addEventListener('mousemove', updateMousePosition);
   
-//       return () => {
-//         window.removeEventListener('mousemove', updateMousePosition);
-//       };
-//     }, []);
+      return () => {
+        window.removeEventListener('mousemove', updateMousePosition);
+      };
+    }, []);
   
-//     return mousePosition;
-//   };
+    return mousePosition;
+  };
 
 export const Draggable: React.FC<DraggableProps> = ({children, dragon, onDrop}) => {
-    const dragonId = "dragon-" + Math.random().toString();
-    // console.log(dragonId)
+    const draggableId = useId();
+    const [flying, setFlying] = useState(false);
 
-    // const [flying, setFlying] = useState(false);
-
-    // useEffect(() => {
-    //     const dragon = document.getElementById(dragonId)
-
-    //     if (dragon?.style) 
-    //         dragon.style.display = flying ? "block" : "none";
-    // }, [flying])
+    if (dragon) {
+        const {x, y} = useMousePosition();
+        // console.log(x,y)
+        if (flying) {
+            const dragonGif = document.getElementById("dragon" + draggableId);
+            if (dragonGif?.style) {
+                dragonGif.style.top = y || "0";
+                dragonGif.style.left = x || "0";
+            }
+        }
+    }
+    
 
     return (
         <div 
             draggable={true} 
             onDragStart={(event) => {
+                if (dragon) setFlying(true);
                 onDrag(event);
-                // setFlying(true);
             }}
-            onDragEnd={onDrop}
-            onDragOver={onDragOver}
+            onDragEnd={(event) => {
+                if (dragon) setFlying(false);
+            }}
+            onDragOver={(event) => {
+                event.preventDefault()
+            }}
             onDrop={(event) => {
                 onDropDefault(event);
                 if (onDrop) onDrop(event);
-                // setFlying(false);
             }}
-            id={Math.random().toString()}
+            id={"draggable"+draggableId}
         >
             {children}
-            {dragon && 
+            {dragon && flying &&
                 <img 
                     src={require("./dragon.gif")} 
-                    id={dragonId}
+                    id={"dragon" + draggableId}
                     alt="dragon" 
                     style={{
                         width: "3rem", 
                         height: "3rem",
-                        display: "none",
+                        position: "absolute",
+                        top: "0",
+                        left: "0",
                     }} 
                 />
             }
