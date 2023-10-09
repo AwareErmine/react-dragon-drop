@@ -7,7 +7,6 @@ export const Dragbox: React.FC<React.PropsWithChildren> = ({children}) => {
             onDrop={(event) => {
                 event.preventDefault();
                 const dragged = document.getElementById(event.dataTransfer.getData("dragged-id"));
-                const draggedParentId = event.dataTransfer.getData("dragged-parent-id");
                 const currentTarget = event.currentTarget as HTMLElement; // currentTarget is the box
                 const target = event.target as HTMLElement; // currentTarget is exactly what we dropped over
 
