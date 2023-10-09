@@ -1,4 +1,5 @@
 import React from "react";
+import {ConditionalWrapperProps, DraggableProps, DragonProps} from "./Draggable.types";
 
 const onDrag = (event: React.DragEvent) => {
     event.dataTransfer.setData("dragged-id", (event.target as HTMLElement).id);
@@ -20,26 +21,38 @@ const onDragOver = (event: React.DragEvent) => {
     event.preventDefault();
 }
 
-interface DraggableProps {
-    children?: React.ReactNode,
-    dragon?: boolean,
-    onDrop?: (event: React.DragEvent) => null
+const Dragon: React.FC<DragonProps> = ({ children }) => {
+    console.log(children)
+
+    return (
+        <div style={{backgroundColor: "lightblue"}}>
+            {children}
+        </div>
+    )
 }
+
+const ConditionalWrapper: React.FC<ConditionalWrapperProps> = ({ children, condition, Wrapper }) => 
+    condition ? <Wrapper>{children}</Wrapper> : children;
 
 export const Draggable: React.FC<DraggableProps> = ({children, dragon, onDrop}) => {
     return (
-        <div 
-            draggable={true} 
-            onDragStart={onDrag}
-            onDragEnd={onDrop}
-            onDragOver={onDragOver}
-            onDrop={(event) => {
-                onDropDefault(event);
-                if (onDrop) onDrop(event);
-            }}
-            id={Math.random().toString()}
+        <ConditionalWrapper
+            condition={dragon}
+            Wrapper={Dragon}
         >
-            {children}
-        </div>
+            <div 
+                draggable={true} 
+                onDragStart={onDrag}
+                onDragEnd={onDrop}
+                onDragOver={onDragOver}
+                onDrop={(event) => {
+                    onDropDefault(event);
+                    if (onDrop) onDrop(event);
+                }}
+                id={Math.random().toString()}
+            >
+                {children}
+            </div>
+        </ConditionalWrapper>
     )
 }

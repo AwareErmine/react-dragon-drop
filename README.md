@@ -54,4 +54,4 @@ Note: don't use Dragbox if you just have one list you need sorted. It's ok. Drag
 - Ability to drag onto anywhere on the screen
 
 ## Dragbox
-- IDK why is react-dnd so complicated 
+- There's probably something to add I just can't think of it 
