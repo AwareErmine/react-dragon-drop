@@ -52,6 +52,7 @@ Note: don't use Dragbox if you just have one list you need sorted. It's ok. Drag
 ## Draggable
 - Dragimage customization
 - Ability to drag onto anywhere on the screen
+- Keep track of history and use ctrl-Z to undo the effects of a drag
 
 ## Dragbox
 - There's probably something to add I just can't think of it 

@@ -8,10 +8,13 @@ export const Dragbox: React.FC<React.PropsWithChildren> = ({children}) => {
                 event.preventDefault();
                 const dragged = document.getElementById(event.dataTransfer.getData("dragged-id"));
                 const draggedParentId = event.dataTransfer.getData("dragged-parent-id");
-                const target = event.currentTarget as HTMLElement;
+                const currentTarget = event.currentTarget as HTMLElement; // currentTarget is the box
+                const target = event.target as HTMLElement; // currentTarget is exactly what we dropped over
 
-                if (dragged && draggedParentId != target.id && !target.firstChild?.firstChild) {
-                    target.firstChild?.appendChild(dragged);
+                // note: all *real* item ordering is controlled in Draggable
+
+                if (dragged && currentTarget.firstChild == target) {
+                    currentTarget.firstChild?.appendChild(dragged);
                 } 
             }}
             id={Math.random().toString()}
