@@ -1,6 +1,6 @@
 {
   "name": "react-dragon-drag-and-drop",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "React drag and drop library with a dragon",
   "main": "./dist/cjs/index",
   "module": "./dist/esm/index",
