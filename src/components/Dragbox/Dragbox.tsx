@@ -1,7 +1,7 @@
 import React, { useId } from "react";
 
 export const Dragbox: React.FC<React.PropsWithChildren> = ({children}) => {
-    const id = useId()
+    const id = useId();
 
     return (
         <div 
