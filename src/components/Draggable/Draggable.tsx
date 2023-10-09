@@ -3,8 +3,6 @@ import {DraggableProps} from "./Draggable.types";
 
 const onDrag = (event: React.DragEvent) => {
     // event.target == event.currentTarget should be true here
-    console.log(event.target)
-
     event.dataTransfer.setData("dragged-id", (event.target as HTMLElement).id);
     event.dataTransfer.setData("dragged-parent-id", (event.target as HTMLElement).parentElement?.parentElement?.id || "noparent");
 };
@@ -18,9 +16,6 @@ const onDropDefault = (event: React.DragEvent) => {
     const target = event.currentTarget as HTMLElement;
     const targetIdx = Array.prototype.indexOf.call(target?.parentNode?.children, target);
     const targetLength = target?.parentNode?.children.length;
-
-    console.log(target)
-    console.log(dragged)
 
     // The parent element of a dragged element's parent is the body of the document for a single list  
     // of draggable items and the DragBox for elements in a DragBox
@@ -40,9 +35,11 @@ const onDropDefault = (event: React.DragEvent) => {
         // where the items are in a Dragbox
         target.parentNode?.insertBefore(dragged, target?.parentNode?.childNodes[targetIdx]);
     } 
-}
+};
 
 const useMousePosition = () => {
+    // https://www.joshwcomeau.com/snippets/react-hooks/use-mouse-position/
+
     const [mousePosition, setMousePosition] = useState({ x: null, y: null });
   
     useEffect(() => {
@@ -58,45 +55,42 @@ const useMousePosition = () => {
     }, []);
   
     return mousePosition;
-  };
+};
 
 export const Draggable: React.FC<DraggableProps> = ({children, dragon, onDrop}) => {
     const draggableId = useId();
     const [flying, setFlying] = useState(false);
-
-    if (dragon) {
-        const {x, y} = useMousePosition();
-        // console.log(x,y)
-        if (flying) {
-            const dragonGif = document.getElementById("dragon" + draggableId);
-            if (dragonGif?.style) {
-                dragonGif.style.top = y || "0";
-                dragonGif.style.left = x || "0";
-            }
-        }
-    }
-    
+    const [mousePosition, setMousePosition] = useState({x: 0, y: 0});
 
     return (
-        <div 
-            draggable={true} 
-            onDragStart={(event) => {
-                if (dragon) setFlying(true);
-                onDrag(event);
-            }}
-            onDragEnd={(event) => {
-                if (dragon) setFlying(false);
-            }}
-            onDragOver={(event) => {
-                event.preventDefault()
-            }}
-            onDrop={(event) => {
-                onDropDefault(event);
-                if (onDrop) onDrop(event);
-            }}
-            id={"draggable"+draggableId}
-        >
-            {children}
+        <>
+            <div 
+                draggable={true} 
+                onDragStart={(event) => {
+                    if (dragon) setFlying(true);
+                    onDrag(event);
+                }}
+                onDragEnd={(event) => {
+                    if (dragon) setFlying(false);
+                }}
+                onDragOver={(event) => {
+                    event.preventDefault();
+
+                    // stagger this
+                    setMousePosition({
+                        x: event.clientX,
+                        y: event.clientY
+                    })
+                }}
+                onDrop={(event) => {
+                    onDropDefault(event);
+                    if (onDrop) onDrop(event);
+                }}
+                id={"draggable" + draggableId}
+            >
+                {children}
+                
+            </div>
             {dragon && flying &&
                 <img 
                     src={require("./dragon.gif")} 
@@ -106,11 +100,11 @@ export const Draggable: React.FC<DraggableProps> = ({children, dragon, onDrop}) 
                         width: "3rem", 
                         height: "3rem",
                         position: "absolute",
-                        top: "0",
-                        left: "0",
+                        top: mousePosition.y+"px" || "0",
+                        left: mousePosition.x+"px" || "0",
                     }} 
                 />
             }
-        </div>
+        </>
     )
 }
