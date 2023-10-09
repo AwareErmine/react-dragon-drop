@@ -5,8 +5,6 @@ Install with NPM
 
 `npm i react-dragon-drag-and-drop`
 
-# Example usage:
-
 ## Draggable list of items
 Note: because draggable items can insert themselves before or after each other, 
 **you do not need Dragbox for just one list**
