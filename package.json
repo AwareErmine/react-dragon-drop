@@ -2,8 +2,8 @@
   "name": "react-dragon-drag-and-drop",
   "version": "1.0.1",
   "description": "React drag and drop library with a dragon",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/cjs/index",
+  "module": "dist/esm/index",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
