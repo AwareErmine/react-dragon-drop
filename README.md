@@ -2,6 +2,7 @@
 ## It's like react-dnd but simpler and with a dragon
 
 Install with NPM
+
 `npm i react-dragon-drag-and-drop`
 
 # Example usage:
