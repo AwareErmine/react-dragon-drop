@@ -19,7 +19,11 @@ const onDropDefault = (event: React.DragEvent) => {
 
     if (draggedParentId == target.parentElement?.parentElement?.id) {
         // I want to make the index of the dragged item the index of the target
-        console.log(draggedParentId);
+        if (dragged && targetIdx + 1 != targetLength) {
+            target.parentNode?.insertBefore(dragged, target?.parentNode?.childNodes[targetIdx]);
+        } else if (dragged) {
+            target.after(dragged);
+        }
     } else if (dragged) {
         // This works well enough for dragging between two lists
         // And for lists with min heights that are bigger than the elements 
