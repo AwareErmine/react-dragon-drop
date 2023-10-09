@@ -20,5 +20,5 @@
       "src/**/*.test.tsx",
       "src/**/*.stories.tsx"
     ],
-    "include": ["./src/**/*.ts"]
+    "include": ["./src/*.ts", "./**/*.tsx"]
   }
