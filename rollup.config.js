@@ -31,8 +31,8 @@ export default [
         ]
       }),
       url(),
-      commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
+      commonjs(),
       terser(),
     ],
     external: [ "react", "react-dom" ],
