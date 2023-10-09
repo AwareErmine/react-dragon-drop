@@ -31,7 +31,7 @@ export default [
       typescript({ tsconfig: "./tsconfig.json" }),
       commonjs(),
     ],
-    external: [ "react", "react-dom", "typescript" ],
+    external: [ "react", "react-dom" ],
   },
   {
     input: "src/index.ts",
