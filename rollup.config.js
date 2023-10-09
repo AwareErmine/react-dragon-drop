@@ -1,5 +1,5 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import commonjs from "@rollup/plugin-commonjs";
+// import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import { terser } from "rollup-plugin-terser";
 import dts from "rollup-plugin-dts";
@@ -32,7 +32,7 @@ export default [
       }),
       url(),
       typescript({ tsconfig: "./tsconfig.json" }),
-      commonjs(),
+      // commonjs(),
       terser(),
     ],
     external: [ "react", "react-dom" ],
