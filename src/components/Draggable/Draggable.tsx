@@ -1,17 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {DraggableProps} from "./Draggable.types";
 
-const onDrag = (event: React.DragEvent, dragon?: boolean) => {
+const onDrag = (event: React.DragEvent) => {
     // event.target == event.currentTarget should be true here
     event.dataTransfer.setData("dragged-id", (event.target as HTMLElement).id);
-
-    // event.target.parentElement --> draggable div
-    // event.target.parentElement.parentElement --> container for draggable + dragon
-    // event.target.parentElement.parentElement.parentElement --> container for draggable items
-
-    // if (dragon) {
-    //     event.target.parentTarget
-    // }
 };
 
 const onDropDefault = (event: React.DragEvent) => {
@@ -34,18 +26,50 @@ const onDragOver = (event: React.DragEvent) => {
     event.preventDefault();
 }
 
+// const useMousePosition = () => {
+//     const [mousePosition, setMousePosition] = useState({ x: null, y: null });
+  
+//     useEffect(() => {
+//       const uWpdateMousePosition = ev => {
+//         setMousePosition({ x: ev.clientX, y: ev.clientY });
+//       };
+      
+//       window.addEventListener('mousemove', updateMousePosition);
+  
+//       return () => {
+//         window.removeEventListener('mousemove', updateMousePosition);
+//       };
+//     }, []);
+  
+//     return mousePosition;
+//   };
+
 export const Draggable: React.FC<DraggableProps> = ({children, dragon, onDrop}) => {
-    const dragonId = "dragon-" + Math.random().toString()
+    const dragonId = "dragon-" + Math.random().toString();
+    console.log(dragonId)
+
+    // const [flying, setFlying] = useState(false);
+
+    // useEffect(() => {
+    //     const dragon = document.getElementById(dragonId)
+
+    //     if (dragon?.style) 
+    //         dragon.style.display = flying ? "block" : "none";
+    // }, [flying])
 
     return (
         <div 
             draggable={true} 
-            onDragStart={(event) => onDrag(event, dragon)}
+            onDragStart={(event) => {
+                onDrag(event);
+                // setFlying(true);
+            }}
             onDragEnd={onDrop}
             onDragOver={onDragOver}
             onDrop={(event) => {
                 onDropDefault(event);
                 if (onDrop) onDrop(event);
+                // setFlying(false);
             }}
             id={Math.random().toString()}
         >
@@ -54,10 +78,11 @@ export const Draggable: React.FC<DraggableProps> = ({children, dragon, onDrop}) 
                 <img 
                     src={require("./dragon.gif")} 
                     id={dragonId}
-                    alt="dragon" style={{
+                    alt="dragon" 
+                    style={{
                         width: "3rem", 
-                        height: "3rem"
-                        // display: "none",
+                        height: "3rem",
+                        display: "none",
                     }} 
                 />
             }
