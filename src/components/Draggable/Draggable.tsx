@@ -77,10 +77,12 @@ export const Draggable: React.FC<DraggableProps> = ({children, dragon, onDrop}) 
                     event.preventDefault();
 
                     // stagger this
-                    setMousePosition({
-                        x: event.clientX,
-                        y: event.clientY
-                    })
+                    if (dragon) {
+                        setMousePosition({
+                            x: event.clientX,
+                            y: event.clientY
+                        })
+                    }
                 }}
                 onDrop={(event) => {
                     onDropDefault(event);
