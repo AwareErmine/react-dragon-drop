@@ -1,14 +1,10 @@
-import resolve from '@rollup/plugin-node-resolve';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 
 const packageJson = require("./package.json");
-
-const globals = {
-  ...packageJson.devDependencies,
-};
 
 export default [
   {
@@ -27,19 +23,15 @@ export default [
     ],
     plugins: [
       peerDepsExternal(),
-      resolve(),
-      typescript({
-        useTsconfigDeclarationDir: true,
-        tsconfigOverride: {
-          exclude: ['**/*.stories.*'],
-        },
+      nodeResolve({
+        extensions: [
+          ".js", ".ts", ".jsx", ".tsx"
+        ]
       }),
-      commonjs({
-        exclude: 'node_modules',
-        ignoreGlobal: true,
-      }),
+      typescript(),
+      commonjs(),
     ],
-    external: Object.keys(globals),
+    external: ["react", "react-dom", "typescript"],
   },
   {
     input: "src/index.ts",
