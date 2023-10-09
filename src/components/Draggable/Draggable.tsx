@@ -37,26 +37,6 @@ const onDropDefault = (event: React.DragEvent) => {
     } 
 };
 
-const useMousePosition = () => {
-    // https://www.joshwcomeau.com/snippets/react-hooks/use-mouse-position/
-
-    const [mousePosition, setMousePosition] = useState({ x: null, y: null });
-  
-    useEffect(() => {
-      const updateMousePosition = (ev: { clientX: any; clientY: any; }) => {
-        setMousePosition({ x: ev.clientX, y: ev.clientY });
-      };
-      
-      window.addEventListener('mousemove', updateMousePosition);
-  
-      return () => {
-        window.removeEventListener('mousemove', updateMousePosition);
-      };
-    }, []);
-  
-    return mousePosition;
-};
-
 export const Draggable: React.FC<DraggableProps> = ({children, dragon, onDrop}) => {
     const draggableId = useId();
     const [flying, setFlying] = useState(false);
