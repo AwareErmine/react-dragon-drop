@@ -22,10 +22,9 @@ const onDragOver = (event: React.DragEvent) => {
 }
 
 const Dragon: React.FC<DragonProps> = ({ children }) => {
-    console.log(children)
 
     return (
-        <div style={{backgroundColor: "lightblue"}}>
+        <div style={{backgroundColor: "lightblue", borderRadius: "4px"}}>
             {children}
         </div>
     )

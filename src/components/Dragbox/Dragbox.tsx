@@ -10,7 +10,7 @@ export const Dragbox: React.FC<React.PropsWithChildren> = ({children}) => {
                 const draggedParentId = event.dataTransfer.getData("dragged-parent-id");
                 const target = event.currentTarget as HTMLElement;
 
-                if (dragged && draggedParentId != target.id) {
+                if (dragged && draggedParentId != target.id && !target.firstChild?.firstChild) {
                     target.firstChild?.appendChild(dragged);
                 } 
             }}
