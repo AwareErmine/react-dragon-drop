@@ -70,7 +70,7 @@ const Dragon: React.FC<{
 
     return (
         <img 
-            src={require("/assets/dragon.gif")} 
+            src={require("../../../assets/dragon.gif")} 
             id={"dragon" + draggableId}
             alt="dragon" 
             style={{
