@@ -56,6 +56,12 @@ const Dragon: React.FC<{
             if (dragonGif?.style && mousePosition.x && mousePosition.y) {
                 dragonGif.style.top = mousePosition.y + "px";
                 dragonGif.style.left = mousePosition.x + "px";
+
+                if (dragonPosition.x && dragonPosition.x > mousePosition.x) {
+                    dragonGif.style.transform = "scaleX(-1)"
+                } else {
+                    dragonGif.style.transform = "scaleX(1)"
+                }
             }
         }
         const intervalId = setInterval(moveDragon, 50);
