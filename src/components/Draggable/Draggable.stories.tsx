@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { Draggable } from "./Draggable";
+import { Draggable } from "../index";
 
 const meta: Meta<typeof Draggable> = {
   component: Draggable,
@@ -41,7 +41,3 @@ Dragon.args = {
     children: <div>test</div>,
     dragon: true
 };
-
-// export const Disabled: Story = (args) => (
-//   <Button data-testId="InputField-id" {...args} />
-// );

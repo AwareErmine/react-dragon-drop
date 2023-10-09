@@ -4,21 +4,26 @@ import {DraggableProps} from "./Draggable.types";
 const onDrag = (event: React.DragEvent) => {
     // event.target == event.currentTarget should be true here
     event.dataTransfer.setData("dragged-id", (event.target as HTMLElement).id);
+    event.dataTransfer.setData("dragged-parent-id", (event.target as HTMLElement).parentElement?.parentElement?.id || "noparent");
 };
 
 const onDropDefault = (event: React.DragEvent) => {
     event.preventDefault();
+
     const dragged = document.getElementById(event.dataTransfer.getData("dragged-id"));
+    const draggedParentId = event.dataTransfer.getData("dragged-parent-id");
+
     const target = event.currentTarget as HTMLElement;
+    const targetIdx = Array.prototype.indexOf.call(target?.parentNode?.children, target);
+    const targetLength = target?.parentNode?.children.length;
 
-    const idx = Array.prototype.indexOf.call(target?.parentNode?.children, target);
-    const parentLength = target?.parentNode?.children.length;
-
-    // Way to simplify this?
-    if (dragged && parentLength && parentLength != 1 && idx != 0 && idx == parentLength - 1) {
-        target.after(dragged);
+    if (draggedParentId == target.parentElement?.parentElement?.id) {
+        // I want to make the index of the dragged item the index of the target
+        console.log(draggedParentId);
     } else if (dragged) {
-        target.parentNode?.insertBefore(dragged, target?.parentNode?.childNodes[idx]);
+        // This works well enough for dragging between two lists
+        // And for lists with min heights that are bigger than the elements 
+        target.parentNode?.insertBefore(dragged, target?.parentNode?.childNodes[targetIdx]);
     }
 }
 
@@ -46,7 +51,7 @@ const onDragOver = (event: React.DragEvent) => {
 
 export const Draggable: React.FC<DraggableProps> = ({children, dragon, onDrop}) => {
     const dragonId = "dragon-" + Math.random().toString();
-    console.log(dragonId)
+    // console.log(dragonId)
 
     // const [flying, setFlying] = useState(false);
 

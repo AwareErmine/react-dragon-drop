@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { Dragbox } from "./Dragbox";
-import { Draggable } from "../Draggable/Draggable";
+import { Draggable } from "../index";
 
 const meta: Meta<typeof Dragbox> = {
   component: Dragbox,
