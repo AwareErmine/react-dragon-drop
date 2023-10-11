@@ -1,6 +1,5 @@
 import React, { useEffect, useId, useState } from "react";
 import {DraggableProps} from "./Draggable.types";
-import theDragon from "../../assets/dragon.gif";
 
 const onDrag = (event: React.DragEvent) => {
     // event.target == event.currentTarget should be true here
