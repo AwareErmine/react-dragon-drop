@@ -27,8 +27,6 @@ const onDropDefault = (event: React.DragEvent) => {
     // If there are two lists of Draggable elements not in a DragBox, you can, therefore drag between
     // them, but if one of the lists becomes empty, you can't go back! 
     if (draggedParentId == target.parentElement?.parentElement?.id) {
-        console.log("all good!")
-
         // I want to make the index of the dragged item the index of the target
         if (dragged && targetIdx + 1 != targetLength) {
             target.parentNode?.insertBefore(dragged, target?.parentNode?.childNodes[targetIdx]);
@@ -73,7 +71,7 @@ const Dragon: React.FC<{
 
     return (
         <img 
-            src={theDragon} 
+            src="https://awareermine.github.io/AwareErmine/dragon.gif" 
             id={"dragon" + draggableId}
             alt="dragon" 
             style={{
