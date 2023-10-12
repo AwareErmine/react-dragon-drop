@@ -14,15 +14,17 @@ Note: because draggable items can insert themselves before or after each other,
 or this should be true, but testing reveals dragging works better in a Dragbox
 
 ```jsx
-<ul>
-    <Draggable>
-        <li>Thing 1</li>
-    </Draggable>
+<Dragbox>
+    <ul>
+        <Draggable>
+            <li>Thing 1</li>
+        </Draggable>
 
-    <Draggable>
-        <li>Thing 2</li>
-    </Draggable>
-</ul>
+        <Draggable>
+            <li>Thing 2</li>
+        </Draggable>
+    </ul>
+</Dragbox>
 ```
 
 ## Drag between two lists
@@ -69,5 +71,5 @@ or this should be true, but testing reveals dragging works better in a Dragbox
 ## Dragbox
 - There's probably something to add I just can't think of it 
 
-## Dragcontext
+## Dragcontext: coming soon
 - Seconding the sentiment of Dragbox
