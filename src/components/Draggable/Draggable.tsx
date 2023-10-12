@@ -76,7 +76,7 @@ const Dragon: React.FC<{
             style={{
                 width: "3rem", 
                 height: "3rem",
-                position: "absolute",
+                position: "fixed",
                 zIndex: "100",
                 transition: "top 400ms ease 0s, left 400ms ease 0s",
             }} 
