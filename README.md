@@ -54,11 +54,16 @@ Note: because draggable items can insert themselves before or after each other,
 # Wishlist
 ## Draggable
 - Dragimage customization
+    - Also dragon image customization
 - Ability to drag onto anywhere on the screen
 - Keep track of history and use ctrl-Z to undo the effects of a drag
 - Drag over customizable effects
 - Dragging is weird with grid 
+    - But this might be a good time to use React-DND
 - If someone knows how to use Storybook properly, please
 
 ## Dragbox
 - There's probably something to add I just can't think of it 
+
+## Dragcontext
+- Seconding the sentiment of Dragbox
