@@ -1,6 +1,8 @@
 # React Dragon Drag and Drop
 ## It's like react-dnd but simpler and with a dragon
 
+Note: unlike React-DND, however, this is based on the [poorly-supported](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent#browser_compatibility) drag and drop API
+
 Install with NPM
 
 `npm i react-dragon-drag-and-drop`
@@ -8,6 +10,8 @@ Install with NPM
 ## Draggable list of items
 Note: because draggable items can insert themselves before or after each other, 
 **you do not need Dragbox for just one list**
+
+or this should be true, but testing reveals dragging works better in a Dragbox
 
 ```jsx
 <ul>

@@ -17,7 +17,9 @@ export const Dragcontext: React.FC<React.PropsWithChildren> = ({children}) => {
                     console.log(currentTarget)
                     console.log(draggedParent?.parentElement?.parentElement)
                     console.log("ok")
+                    // This should do nothing
                 } else {
+                    // This should block the dragging
                     console.log(currentTarget)
                     console.log(draggedParent?.parentElement?.parentElement)
                     console.log("we don't do that here")
